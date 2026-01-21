@@ -1,0 +1,9 @@
+
+{
+  "name": "DevAI Flow - The Future of Productive Development",
+  "description": "A high-performance landing page exploring how to leverage AI tools to build websites and apps at 10x speed.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
