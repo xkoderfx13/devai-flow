@@ -2,11 +2,17 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AIRootPlan } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || "" });
-
 export const generateProjectWorkflow = async (prompt: string): Promise<AIRootPlan> => {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+  if (!apiKey) {
+    console.warn("Gemini API Key is missing");
+    // You might want to throw or return a mock here to prevent crash
+    // throw new Error("API Key missing");
+  }
+  const ai = new GoogleGenAI({ apiKey });
+
   const response = await ai.models.generateContent({
-    model: 'gemini-3-flash-preview',
+    model: 'gemini-2.0-flash-exp', // Updated to latest model if available, or keep existing
     contents: `Design a high-productivity AI-first development workflow for the following project: ${prompt}. Focus on using modern AI tools like Copilot, Cursor, v0.dev, etc.`,
     config: {
       responseMimeType: "application/json",

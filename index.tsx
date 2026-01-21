@@ -9,9 +9,15 @@ if (!rootElement) {
   throw new Error("Could not find root element to mount to");
 }
 
+console.log("Starting React App...");
 const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+try {
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+  console.log("React Render Called");
+} catch (e) {
+  console.error("React Render Error:", e);
+}
