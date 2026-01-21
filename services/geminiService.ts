@@ -2,7 +2,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AIRootPlan } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || "" });
 
 export const generateProjectWorkflow = async (prompt: string): Promise<AIRootPlan> => {
   const response = await ai.models.generateContent({
@@ -14,9 +14,9 @@ export const generateProjectWorkflow = async (prompt: string): Promise<AIRootPla
         type: Type.OBJECT,
         properties: {
           projectName: { type: Type.STRING },
-          suggestedStack: { 
-            type: Type.ARRAY, 
-            items: { type: Type.STRING } 
+          suggestedStack: {
+            type: Type.ARRAY,
+            items: { type: Type.STRING }
           },
           workflow: {
             type: Type.ARRAY,
